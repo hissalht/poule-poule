@@ -1,0 +1,14 @@
+{
+  "name": "poule-poule-lib",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/poule-poule-lib.cjs.js",
+  "module": "dist/poule-poule-lib.esm.js",
+  "license": "MIT",
+  "devDependencies": {
+    "rollup": "^1.24.0"
+  },
+  "scripts": {
+    "build": "rollup --config"
+  }
+}
