@@ -27,6 +27,9 @@ export default new Vuex.Store({
     },
     REMOVE_PLAYER(state, playerId) {
       state.players = state.players.filter(id => playerId !== id)
+    },
+    SET_USER(state, userId) {
+      state.user = userId
     }
   },
   actions: {

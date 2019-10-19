@@ -1,19 +1,16 @@
 <template>
   <div>
-    <label>
-      Expand
-      <input type="checkbox" v-model="expand" />
-    </label>
     <button @click="handleButtonClick">Add random card</button>
     <p>Eggs : {{ eggCount }}</p>
-    <ol>
-      <li v-for="(card, index) in cardStack" :key="index" :class="{ expand }">
-        <card :type="card" class="card" />
-      </li>
-    </ol>
-    <div class="spacer" />
+    <card v-if="lastCard" :type="lastCard" />
+    <h3>Players</h3>
     <ul>
-      <li v-for="player in players" :key="player">{{ player }}</li>
+      <li v-for="player in players" :key="player">
+        {{ player }}
+        <template v-if="player === user">
+          (you)
+        </template>
+      </li>
     </ul>
   </div>
 </template>
@@ -28,13 +25,13 @@ export default {
   components: {
     Card
   },
-  data: () => ({
-    expand: false
-  }),
   computed: {
-    ...mapState(['cardStack', 'players']),
+    ...mapState(['cardStack', 'players', 'user']),
     eggCount() {
       return getEggCount(this.cardStack)
+    },
+    lastCard() {
+      return this.cardStack[this.cardStack.length - 1]
     }
   },
   methods: {
@@ -49,22 +46,5 @@ export default {
 <style lang="scss" scoped>
 .spacer {
   height: 150px;
-}
-
-ol {
-  list-style: none;
-  padding: 0;
-
-  li {
-    height: 3px;
-    transition: height 0.25s linear;
-    &.expand {
-      height: 100px;
-    }
-  }
-
-  .card {
-    position: absolute;
-  }
 }
 </style>

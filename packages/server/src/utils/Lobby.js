@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import { getRandomCard } from 'poule-poule-lib'
 import PlayerAlreadyInLobby from './errors/PlayerAlreadyInLobby'
 import PlayerNotInLobby from './errors/PlayerNotInLobby'
 
@@ -15,6 +16,12 @@ export default class Lobby {
     }
 
     this._configureIO()
+
+    setInterval(() => {
+      const newCard = getRandomCard()
+      this.cardStack.push(newCard)
+      this.emit('pp:card', newCard)
+    }, 2000)
   }
 
   /**
@@ -27,6 +34,7 @@ export default class Lobby {
         socket.join(this.id)
         this.join(socket.id)
         answer({
+          currentPlayer: socket.id,
           players: this.players,
           cardStack: this.cardStack
         })

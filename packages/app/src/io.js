@@ -4,10 +4,14 @@ import store from './store'
 const socket = io()
 
 socket.on('connect', () => {
-  socket.emit('pp:join' /* , lobby id */, ({ cardStack, players }) => {
-    store.commit('SET_CARDS', cardStack)
-    store.commit('SET_PLAYERS', players)
-  })
+  socket.emit(
+    'pp:join' /* , lobby id */,
+    ({ cardStack, players, currentPlayer }) => {
+      store.commit('SET_CARDS', cardStack)
+      store.commit('SET_PLAYERS', players)
+      store.commit('SET_USER', currentPlayer)
+    }
+  )
 })
 
 socket.on('pp:card', cardType => {
@@ -15,7 +19,6 @@ socket.on('pp:card', cardType => {
 })
 
 socket.on('pp:join', playerId => {
-  console.log('new player joined')
   store.commit('ADD_PLAYER', playerId)
 })
 
