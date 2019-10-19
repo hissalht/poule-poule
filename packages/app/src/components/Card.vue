@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { CardType } from 'poule-poule-lib';
+import { CardType } from 'poule-poule-lib'
 export default {
   name: 'Card',
   props: {
@@ -18,21 +18,21 @@ export default {
     cardText() {
       switch (this.type) {
         case CardType.EGG:
-          return '🥚';
+          return '🥚'
         case CardType.CHICKEN:
-          return '🐔';
+          return '🐔'
         case CardType.FOX:
-          return '🦊';
+          return '🦊'
         case CardType.DOG:
-          return '🐶 ';
+          return '🐶 '
         case CardType.DUCK:
-          return '🦆';
+          return '🦆'
         default:
-          throw new Error('Unknown card type', this.type);
+          throw new Error('Unknown card type', this.type)
       }
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
