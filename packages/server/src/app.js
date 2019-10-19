@@ -1,7 +1,7 @@
-const express = require('express')
+import express from 'express'
 
-const configure = require('./configure')
-const indexRouter = require('./routes/index')
+import configure from './configure'
+import indexRouter from './routes/index'
 
 const app = express()
 
@@ -9,4 +9,4 @@ configure(app)
 
 app.use('/', indexRouter)
 
-module.exports = app
+export default app

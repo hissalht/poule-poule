@@ -1,8 +1,10 @@
-const express = require('express')
-const path = require('path')
-const logger = require('morgan')
-const io = require('socket.io')()
-const Lobby = require('./utils/Lobby')
+import express from 'express'
+import { join } from 'path'
+import logger from 'morgan'
+import socketio from 'socket.io'
+import Lobby from './utils/Lobby'
+
+const io = socketio()
 
 // default lobby config
 const lobby = new Lobby(io)
@@ -21,8 +23,8 @@ lobby.onPlayerLeave(id => {
  */
 function configureServer(app) {
   app.use(logger('dev'))
-  app.use(express.static(path.join(__dirname, 'public')))
+  app.use(express.static(join(__dirname, '../public')))
   app.io = io
 }
 
-module.exports = configureServer
+export default configureServer

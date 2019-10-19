@@ -1,8 +1,9 @@
-var express = require('express')
-var router = express.Router()
+import { Router } from 'express'
+
+const router = Router()
 
 router.get('/', function(_req, res) {
   res.send('Hello there :)')
 })
 
-module.exports = router
+export default router

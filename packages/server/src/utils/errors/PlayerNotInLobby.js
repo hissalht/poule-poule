@@ -1,4 +1,4 @@
-module.exports = class PlayerNotInLobby extends Error {
+class PlayerNotInLobby extends Error {
   /**
    * @param {string} playerId
    * @param {string} lobbyId
@@ -10,3 +10,5 @@ module.exports = class PlayerNotInLobby extends Error {
     this.lobbyId = lobbyId
   }
 }
+
+export default PlayerNotInLobby

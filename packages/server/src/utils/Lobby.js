@@ -1,8 +1,8 @@
-const _ = require('lodash')
-const PlayerAlreadyInLobby = require('./errors/PlayerAlreadyInLobby')
-const PlayerNotInLobby = require('./errors/PlayerNotInLobby')
+import _ from 'lodash'
+import PlayerAlreadyInLobby from './errors/PlayerAlreadyInLobby'
+import PlayerNotInLobby from './errors/PlayerNotInLobby'
 
-class Lobby {
+export default class Lobby {
   constructor(io) {
     this.id = _.uniqueId()
     this.io = io
@@ -90,8 +90,6 @@ class Lobby {
     this.callBacks.onPlayerLeave = cb
   }
 }
-
-module.exports = Lobby
 
 /**
  * @callback onPlayerJoinCallback
