@@ -1,7 +1,6 @@
 {
   "name": "poule-poule-lib",
-  "version": "1.0.0",
-  "private": true,
+  "version": "0.0.0",
   "main": "dist/poule-poule-lib.cjs.js",
   "module": "dist/poule-poule-lib.esm.js",
   "license": "MIT",
@@ -9,6 +8,7 @@
     "rollup": "^1.24.0"
   },
   "scripts": {
-    "build": "rollup --config"
+    "build": "rollup --config",
+    "prepublish": "rollup --config"
   }
 }
