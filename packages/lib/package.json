@@ -8,6 +8,7 @@
     "rollup": "^1.24.0"
   },
   "scripts": {
+    "dev": "rollup --config --watch",
     "build": "rollup --config",
     "prepublish": "rollup --config"
   }
