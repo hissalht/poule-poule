@@ -1,6 +1,7 @@
 <template>
   <div>
-    <button @click="handleButtonClick">Add random card</button>
+    <announcement />
+    <button @click="handleButtonClick">HIT</button>
     <p>Eggs : {{ eggCount }}</p>
     <card v-if="lastCard" :type="lastCard" />
     <h3>Players</h3>
@@ -19,11 +20,16 @@
 import { mapActions, mapState } from 'vuex'
 import { getEggCount } from 'poule-poule-lib'
 import Card from '@/components/Card'
+import Announcement from '@/components/Announcement'
+import io from './io'
+
+console.log(io)
 
 export default {
   name: 'App',
   components: {
-    Card
+    Card,
+    Announcement
   },
   computed: {
     ...mapState(['cardStack', 'players', 'user']),
@@ -37,7 +43,7 @@ export default {
   methods: {
     ...mapActions(['addRandomCard']),
     handleButtonClick() {
-      this.addRandomCard()
+      io.emit('pp:hit')
     }
   }
 }
