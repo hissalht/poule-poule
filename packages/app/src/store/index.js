@@ -8,7 +8,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     cardStack: [],
-    players: []
+    players: [],
+    result: null,
+    user: null
   },
   mutations: {
     SET_CARDS(state, cards) {
@@ -30,6 +32,16 @@ export default new Vuex.Store({
     },
     SET_USER(state, userId) {
       state.user = userId
+    },
+    SET_WINNER(state, playerId) {
+      state.result = {
+        winner: playerId
+      }
+    },
+    SET_LOSER(state, playerId) {
+      state.result = {
+        loser: playerId
+      }
     }
   },
   actions: {

@@ -25,3 +25,13 @@ socket.on('pp:join', playerId => {
 socket.on('pp:leave', playerId => {
   store.commit('REMOVE_PLAYER', playerId)
 })
+
+socket.on('pp:winner', player => {
+  store.commit('SET_WINNER', player)
+})
+
+socket.on('pp:loser', player => {
+  store.commit('SET_LOSER', player)
+})
+
+export default socket

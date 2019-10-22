@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { getRandomCard } from 'poule-poule-lib'
+import { getRandomCard, getEggCount } from 'poule-poule-lib'
 import PlayerAlreadyInLobby from './errors/PlayerAlreadyInLobby'
 import PlayerNotInLobby from './errors/PlayerNotInLobby'
 
@@ -9,6 +9,7 @@ export default class Lobby {
     this.io = io
     this.players = []
     this.cardStack = []
+    this.runningId = null
 
     this.callBacks = {
       onPlayerJoin: null,
@@ -16,12 +17,7 @@ export default class Lobby {
     }
 
     this._configureIO()
-
-    setInterval(() => {
-      const newCard = getRandomCard()
-      this.cardStack.push(newCard)
-      this.emit('pp:card', newCard)
-    }, 2000)
+    this.start()
   }
 
   /**
@@ -40,6 +36,15 @@ export default class Lobby {
         })
       })
 
+      socket.on('pp:hit', () => {
+        const eggCount = getEggCount(this.cardStack)
+        if (eggCount === 5) {
+          this.emit('pp:winner', socket.id)
+        } else {
+          this.emit('pp:loser', socket.id)
+        }
+      })
+
       socket.on('pp:leave', () => {
         socket.leave(this.id)
         this.leave(socket.id)
@@ -50,6 +55,24 @@ export default class Lobby {
         this.leave(socket.id)
       })
     })
+  }
+
+  /** Start the game */
+  start() {
+    this.cardStack = []
+    this.runningId = setInterval(() => this.turn(this), 1000)
+  }
+
+  /** Stops the game. */
+  stop() {
+    clearInterval(this.runningId)
+    this.runningId = null
+  }
+
+  turn() {
+    const newCard = getRandomCard()
+    this.cardStack.push(newCard)
+    this.emit('pp:card', newCard)
   }
 
   emit(event, args) {
