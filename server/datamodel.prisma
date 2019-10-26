@@ -1,0 +1,19 @@
+enum CardType {
+  EGG
+  CHICKEN
+  FOX
+  DOG
+  DUCK
+}
+
+type User {
+  id: ID! @id
+  socketId: String!
+}
+
+type Lobby {
+  id: ID! @id
+  name: String!
+  users: [User!]!
+  cards: [CardType!]! @scalarList(strategy: RELATION)
+}

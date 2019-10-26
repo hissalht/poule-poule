@@ -3,6 +3,7 @@ import { join } from 'path'
 import logger from 'morgan'
 import socketio from 'socket.io'
 import Lobby from './utils/Lobby'
+import bodyParser from 'body-parser'
 
 const io = socketio()
 
@@ -24,6 +25,7 @@ lobby.onPlayerLeave(id => {
 function configureServer(app) {
   app.use(logger('dev'))
   app.use(express.static(join(__dirname, '../public')))
+  app.use(bodyParser.json())
   app.io = io
 }
 

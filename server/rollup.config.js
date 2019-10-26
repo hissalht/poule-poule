@@ -1,4 +1,6 @@
 import run from 'rollup-plugin-run'
+import commonjs from 'rollup-plugin-commonjs';
+
 const PACKAGE_NAME = 'index'
 const OUPUT_FOLDER = 'dist'
 
@@ -10,5 +12,10 @@ module.exports = {
     file: `${OUPUT_FOLDER}/${PACKAGE_NAME}.js`,
     format: 'cjs'
   },
-  plugins: [watch && run()]
+  plugins: [
+    commonjs({
+      include: 'generated/**'
+    }),
+    watch && run()
+  ]
 }

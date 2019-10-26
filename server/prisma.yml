@@ -1,0 +1,6 @@
+endpoint: https://eu1.prisma.sh/adrien-boutigny-4e5f37/poule-poule/dev
+datamodel: datamodel.prisma
+
+generate:
+  - generator: javascript-client
+    output: ./generated/prisma-client/
