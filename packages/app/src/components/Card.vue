@@ -24,11 +24,11 @@ export default {
         case CardType.FOX:
           return '🦊'
         case CardType.DOG:
-          return '🐶 '
+          return '🐶'
         case CardType.DUCK:
           return '🦆'
         default:
-          throw new Error('Unknown card type', this.type)
+          throw new Error(`Unknown card type ${this.type}`)
       }
     }
   }

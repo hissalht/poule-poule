@@ -23,8 +23,6 @@ import Card from '@/components/Card'
 import Announcement from '@/components/Announcement'
 import io from './io'
 
-console.log(io)
-
 export default {
   name: 'App',
   components: {
@@ -48,9 +46,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.spacer {
-  height: 150px;
-}
-</style>
