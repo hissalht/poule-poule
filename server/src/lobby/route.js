@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import _ from 'lodash'
 import { prisma } from '../../generated/prisma-client'
-import { postLobbySchema } from './validation'
+import { postLobbySchema, postUserSchema } from './validation'
 import * as prismaService from './service'
 
 const router = new Router()
@@ -40,7 +40,8 @@ router.delete(
 router.post(
   '/users',
   wrapHandler(async ({ body }, res) => {
-    const user = await prismaService.createUser(body.name)
+    await postUserSchema.validate(body)
+    const user = await prismaService.createUser(body.name, body.password)
     res.send(user)
   })
 )
@@ -48,6 +49,7 @@ router.post(
 
 // validation error
 router.use((err, req, res, next) => {
+  console.log(err)
   if (err.name === 'ValidationError') {
     res.status(400).send({
       error: _.pick(err, ['message'])

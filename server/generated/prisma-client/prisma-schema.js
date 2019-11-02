@@ -212,6 +212,7 @@ type Subscription {
 type User {
   id: ID!
   name: String!
+  password: String!
 }
 
 type UserConnection {
@@ -223,6 +224,7 @@ type UserConnection {
 input UserCreateInput {
   id: ID
   name: String!
+  password: String!
 }
 
 input UserCreateManyInput {
@@ -240,11 +242,14 @@ enum UserOrderByInput {
   id_DESC
   name_ASC
   name_DESC
+  password_ASC
+  password_DESC
 }
 
 type UserPreviousValues {
   id: ID!
   name: String!
+  password: String!
 }
 
 input UserScalarWhereInput {
@@ -276,6 +281,20 @@ input UserScalarWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
   AND: [UserScalarWhereInput!]
   OR: [UserScalarWhereInput!]
   NOT: [UserScalarWhereInput!]
@@ -301,14 +320,17 @@ input UserSubscriptionWhereInput {
 
 input UserUpdateDataInput {
   name: String
+  password: String
 }
 
 input UserUpdateInput {
   name: String
+  password: String
 }
 
 input UserUpdateManyDataInput {
   name: String
+  password: String
 }
 
 input UserUpdateManyInput {
@@ -325,6 +347,7 @@ input UserUpdateManyInput {
 
 input UserUpdateManyMutationInput {
   name: String
+  password: String
 }
 
 input UserUpdateManyWithWhereNestedInput {
@@ -372,6 +395,20 @@ input UserWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

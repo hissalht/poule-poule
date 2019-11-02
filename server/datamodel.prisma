@@ -9,6 +9,7 @@ enum CardType {
 type User {
   id: ID! @id
   name: String! @unique
+  password: String!
 }
 
 type Lobby {

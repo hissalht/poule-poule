@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import { prisma } from '../../generated/prisma-client'
+import {genSalt, hash} from 'bcryptjs'
 
 /**
  * @private
@@ -40,4 +41,9 @@ export const createLobby = createServiceFunction((name, password) =>
 
 export const getLobbies = createServiceFunction(() => prisma.lobbies())
 
-export const createUser = createServiceFunction((name) => prisma.createUser({ name }))
+export const createUser = createServiceFunction(async (name, password) => {
+  const salt = await genSalt(10)
+  const passwordHash = await hash(password, salt)
+  const user = await prisma.createUser({ name, password: passwordHash })
+  return _.omit(user, 'password')
+})
