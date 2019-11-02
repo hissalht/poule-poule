@@ -1,35 +1,42 @@
 <template>
-  <v-form
-    ref="form"
-    v-model="isValid"
-    class="ma-3"
-    @submit.prevent="handleSubmit"
-  >
-    <v-text-field
-      v-model="name"
-      :rules="nameRules"
-      label="Name"
-      :loading="isLoading"
-      :disabled="isLoading"
-      required
-      autocomplete="off"
-      @input="handleInput"
-    />
-    <div class="d-flex flex-column flex-sm-row justify-center">
-      <v-btn text type="reset" @click="handleReset" :disabled="isLoading"
-        >Reset</v-btn
-      >
-      <v-btn
-        :disabled="!isValid"
-        color="primary"
-        type="submit"
-        class="ms-sm-2"
+  <div class="ma-3">
+    <h2 class="headline">Sign up</h2>
+    <v-form ref="form" v-model="isValid" @submit.prevent="handleSubmit">
+      <v-text-field
+        v-model="name"
+        :rules="nameRules"
+        label="Name"
         :loading="isLoading"
-      >
-        Join
-      </v-btn>
-    </div>
-  </v-form>
+        :disabled="isLoading"
+        required
+        autocomplete="off"
+        @input="handleInput"
+      />
+      <v-text-field
+        v-model="password"
+        :errors="passwordRules"
+        label="Password"
+        :loading="isLoading"
+        :disabled="isLoading"
+        required
+        type="password"
+      />
+      <div class="d-flex flex-column flex-sm-row justify-center">
+        <v-btn text type="reset" @click="handleReset" :disabled="isLoading">
+          Reset
+        </v-btn>
+        <v-btn
+          :disabled="!isValid"
+          color="primary"
+          type="submit"
+          class="ms-sm-2"
+          :loading="isLoading"
+        >
+          Join
+        </v-btn>
+      </div>
+    </v-form>
+  </div>
 </template>
 
 <script>
@@ -41,8 +48,9 @@ export default {
   data: () => ({
     isValid: true,
     isLoading: false,
+    serverError: null,
     name: '',
-    serverError: null
+    password: ''
   }),
   computed: {
     nameRules() {
@@ -53,6 +61,12 @@ export default {
           /^[a-zA-Z0-9]+$/.test(v) ||
           'Your name can only contain alphanumerical characters.',
         () => !this.serverError || this.serverError
+      ]
+    },
+    passwordRules() {
+      return [
+        v => !!v || 'You must define a password.',
+        v => size(v) >= 8 || 'Your password must be at least 8 characters long.'
       ]
     }
   },
