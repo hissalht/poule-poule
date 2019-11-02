@@ -39,3 +39,5 @@ export const createLobby = createServiceFunction((name, password) =>
 )
 
 export const getLobbies = createServiceFunction(() => prisma.lobbies())
+
+export const createUser = createServiceFunction((name) => prisma.createUser({ name }))

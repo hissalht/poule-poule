@@ -21,7 +21,7 @@ import { mapActions, mapState } from 'vuex'
 import { getEggCount } from 'poule-poule-lib'
 import Card from '@/components/Card'
 import Announcement from '@/components/Announcement'
-import io from '@/io'
+// import io from '@/io'
 
 export default {
   name: 'Game',
@@ -41,7 +41,7 @@ export default {
   methods: {
     ...mapActions(['addRandomCard']),
     handleButtonClick() {
-      io.emit('pp:hit')
+      // io.emit('pp:hit')
     }
   }
 }

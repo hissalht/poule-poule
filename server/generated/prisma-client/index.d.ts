@@ -140,11 +140,7 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type UserOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "socketId_ASC"
-  | "socketId_DESC";
+export type UserOrderByInput = "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC";
 
 export type CardType = "EGG" | "CHICKEN" | "FOX" | "DOG" | "DUCK";
 
@@ -160,7 +156,7 @@ export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
 export interface UserCreateInput {
   id?: Maybe<ID_Input>;
-  socketId: String;
+  name: String;
 }
 
 export type LobbyWhereUniqueInput = AtLeastOne<{
@@ -168,7 +164,7 @@ export type LobbyWhereUniqueInput = AtLeastOne<{
 }>;
 
 export interface UserUpdateManyDataInput {
-  socketId?: Maybe<String>;
+  name?: Maybe<String>;
 }
 
 export interface UserUpdateWithWhereUniqueNestedInput {
@@ -216,20 +212,20 @@ export interface UserScalarWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  socketId?: Maybe<String>;
-  socketId_not?: Maybe<String>;
-  socketId_in?: Maybe<String[] | String>;
-  socketId_not_in?: Maybe<String[] | String>;
-  socketId_lt?: Maybe<String>;
-  socketId_lte?: Maybe<String>;
-  socketId_gt?: Maybe<String>;
-  socketId_gte?: Maybe<String>;
-  socketId_contains?: Maybe<String>;
-  socketId_not_contains?: Maybe<String>;
-  socketId_starts_with?: Maybe<String>;
-  socketId_not_starts_with?: Maybe<String>;
-  socketId_ends_with?: Maybe<String>;
-  socketId_not_ends_with?: Maybe<String>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
   AND?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
   OR?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
   NOT?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
@@ -298,7 +294,7 @@ export interface LobbySubscriptionWhereInput {
 }
 
 export interface UserUpdateInput {
-  socketId?: Maybe<String>;
+  name?: Maybe<String>;
 }
 
 export interface LobbyCreateInput {
@@ -333,27 +329,27 @@ export interface UserWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  socketId?: Maybe<String>;
-  socketId_not?: Maybe<String>;
-  socketId_in?: Maybe<String[] | String>;
-  socketId_not_in?: Maybe<String[] | String>;
-  socketId_lt?: Maybe<String>;
-  socketId_lte?: Maybe<String>;
-  socketId_gt?: Maybe<String>;
-  socketId_gte?: Maybe<String>;
-  socketId_contains?: Maybe<String>;
-  socketId_not_contains?: Maybe<String>;
-  socketId_starts_with?: Maybe<String>;
-  socketId_not_starts_with?: Maybe<String>;
-  socketId_ends_with?: Maybe<String>;
-  socketId_not_ends_with?: Maybe<String>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
   AND?: Maybe<UserWhereInput[] | UserWhereInput>;
   OR?: Maybe<UserWhereInput[] | UserWhereInput>;
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
 }
 
 export interface UserUpdateDataInput {
-  socketId?: Maybe<String>;
+  name?: Maybe<String>;
 }
 
 export interface LobbyUpdateInput {
@@ -386,6 +382,7 @@ export interface UserSubscriptionWhereInput {
 
 export type UserWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
+  name?: Maybe<String>;
 }>;
 
 export interface LobbyUpdateManyMutationInput {
@@ -395,7 +392,7 @@ export interface LobbyUpdateManyMutationInput {
 }
 
 export interface UserUpdateManyMutationInput {
-  socketId?: Maybe<String>;
+  name?: Maybe<String>;
 }
 
 export interface NodeNode {
@@ -404,21 +401,21 @@ export interface NodeNode {
 
 export interface UserPreviousValues {
   id: ID_Output;
-  socketId: String;
+  name: String;
 }
 
 export interface UserPreviousValuesPromise
   extends Promise<UserPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  socketId: () => Promise<String>;
+  name: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
   extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  socketId: () => Promise<AsyncIterator<String>>;
+  name: () => Promise<AsyncIterator<String>>;
 }
 
 export interface BatchPayload {
@@ -489,26 +486,26 @@ export interface UserSubscriptionPayloadSubscription
 
 export interface User {
   id: ID_Output;
-  socketId: String;
+  name: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
-  socketId: () => Promise<String>;
+  name: () => Promise<String>;
 }
 
 export interface UserSubscription
   extends Promise<AsyncIterator<User>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  socketId: () => Promise<AsyncIterator<String>>;
+  name: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserNullablePromise
   extends Promise<User | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  socketId: () => Promise<String>;
+  name: () => Promise<String>;
 }
 
 export interface UserEdge {

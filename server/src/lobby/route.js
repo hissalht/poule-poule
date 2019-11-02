@@ -8,12 +8,12 @@ const router = new Router()
 
 const wrapHandler = func => (req, res, next) => {
   Promise.resolve()
-    .then(func(req, res, next))
+    .then(() => func(req, res, next))
     .catch(next)
 }
 
 router.get(
-  '/',
+  '/lobbies',
   wrapHandler(async (req, res) => {
     const lobbies = await prisma.lobbies()
     res.send(lobbies)
@@ -21,7 +21,7 @@ router.get(
 )
 
 router.post(
-  '/',
+  '/lobbies',
   wrapHandler(async ({ body }, res) => {
     await postLobbySchema.validate(body)
     const lobby = await prismaService.createLobby(body.name, body.password)
@@ -30,28 +30,42 @@ router.post(
 )
 
 router.delete(
-  '/:id',
+  '/lobbies/:id',
   wrapHandler(async ({ params: { id } }, res) => {
     await prismaService.deleteLobby(id)
     res.sendStatus(200)
   })
 )
 
+router.post(
+  '/users',
+  wrapHandler(async ({ body }, res) => {
+    const user = await prismaService.createUser(body.name)
+    res.send(user)
+  })
+)
+
+
 // validation error
 router.use((err, req, res, next) => {
-  console.log(err.name)
   if (err.name === 'ValidationError') {
     res.status(400).send({
       error: _.pick(err, ['message'])
     })
   } else if (err.name === 'PrismaError') {
     const code = _.get(err, 'result.errors[0].code')
-    console.log('TCL: code', code)
     switch (code) {
       case 3039:
         res.status(404).send({
           error: {
             message: 'Lobby not found'
+          }
+        })
+        break
+      case 3010:
+        res.status(409).send({
+          error: {
+            message: 'This resource already exists.'
           }
         })
         break

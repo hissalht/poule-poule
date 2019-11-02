@@ -211,7 +211,7 @@ type Subscription {
 
 type User {
   id: ID!
-  socketId: String!
+  name: String!
 }
 
 type UserConnection {
@@ -222,7 +222,7 @@ type UserConnection {
 
 input UserCreateInput {
   id: ID
-  socketId: String!
+  name: String!
 }
 
 input UserCreateManyInput {
@@ -238,13 +238,13 @@ type UserEdge {
 enum UserOrderByInput {
   id_ASC
   id_DESC
-  socketId_ASC
-  socketId_DESC
+  name_ASC
+  name_DESC
 }
 
 type UserPreviousValues {
   id: ID!
-  socketId: String!
+  name: String!
 }
 
 input UserScalarWhereInput {
@@ -262,20 +262,20 @@ input UserScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  socketId: String
-  socketId_not: String
-  socketId_in: [String!]
-  socketId_not_in: [String!]
-  socketId_lt: String
-  socketId_lte: String
-  socketId_gt: String
-  socketId_gte: String
-  socketId_contains: String
-  socketId_not_contains: String
-  socketId_starts_with: String
-  socketId_not_starts_with: String
-  socketId_ends_with: String
-  socketId_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
   AND: [UserScalarWhereInput!]
   OR: [UserScalarWhereInput!]
   NOT: [UserScalarWhereInput!]
@@ -300,15 +300,15 @@ input UserSubscriptionWhereInput {
 }
 
 input UserUpdateDataInput {
-  socketId: String
+  name: String
 }
 
 input UserUpdateInput {
-  socketId: String
+  name: String
 }
 
 input UserUpdateManyDataInput {
-  socketId: String
+  name: String
 }
 
 input UserUpdateManyInput {
@@ -324,7 +324,7 @@ input UserUpdateManyInput {
 }
 
 input UserUpdateManyMutationInput {
-  socketId: String
+  name: String
 }
 
 input UserUpdateManyWithWhereNestedInput {
@@ -358,20 +358,20 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  socketId: String
-  socketId_not: String
-  socketId_in: [String!]
-  socketId_not_in: [String!]
-  socketId_lt: String
-  socketId_lte: String
-  socketId_gt: String
-  socketId_gte: String
-  socketId_contains: String
-  socketId_not_contains: String
-  socketId_starts_with: String
-  socketId_not_starts_with: String
-  socketId_ends_with: String
-  socketId_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
@@ -379,6 +379,7 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
+  name: String
 }
 `
       }

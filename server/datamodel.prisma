@@ -8,7 +8,7 @@ enum CardType {
 
 type User {
   id: ID! @id
-  socketId: String!
+  name: String! @unique
 }
 
 type Lobby {

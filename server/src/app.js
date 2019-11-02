@@ -7,6 +7,6 @@ const app = express()
 
 configure(app)
 
-app.use('/lobbies', lobbyRouter)
+app.use('/api', lobbyRouter)
 
 export default app

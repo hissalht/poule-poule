@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 import { getRandomCard } from 'poule-poule-lib'
 
@@ -47,6 +48,14 @@ export default new Vuex.Store({
   actions: {
     addRandomCard({ commit }) {
       commit('ADD_CARD', getRandomCard())
+    },
+    signup({ commit }, { name }) {
+      return axios
+        .post('/api/users', { name })
+        .then(response => response.data)
+        .then(data => {
+          commit('SET_USER', data)
+        })
     }
   },
   modules: {}
