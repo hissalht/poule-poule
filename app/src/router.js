@@ -4,6 +4,8 @@ import Index from '@/views/Index'
 import Game from '@/views/Game'
 import Signup from '@/views/user/Signup'
 
+import store from '@/store'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -20,7 +22,13 @@ const routes = [
   {
     name: 'signup',
     path: '/user/signup',
-    component: Signup
+    component: Signup,
+    beforeEnter(to, from, next) {
+      if (store.getters.isLoggedIn) {
+        return next({ name: 'game' })
+      }
+      next()
+    }
   }
 ]
 
