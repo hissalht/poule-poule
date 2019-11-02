@@ -16,4 +16,5 @@ type Lobby {
   name: String!
   users: [User!]!
   cards: [CardType!]! @scalarList(strategy: RELATION)
+  password: String
 }

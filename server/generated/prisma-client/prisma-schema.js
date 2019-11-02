@@ -28,6 +28,7 @@ type Lobby {
   name: String!
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
   cards: [CardType!]!
+  password: String
 }
 
 type LobbyConnection {
@@ -45,6 +46,7 @@ input LobbyCreateInput {
   name: String!
   users: UserCreateManyInput
   cards: LobbyCreatecardsInput
+  password: String
 }
 
 type LobbyEdge {
@@ -57,12 +59,15 @@ enum LobbyOrderByInput {
   id_DESC
   name_ASC
   name_DESC
+  password_ASC
+  password_DESC
 }
 
 type LobbyPreviousValues {
   id: ID!
   name: String!
   cards: [CardType!]!
+  password: String
 }
 
 type LobbySubscriptionPayload {
@@ -91,11 +96,13 @@ input LobbyUpdateInput {
   name: String
   users: UserUpdateManyInput
   cards: LobbyUpdatecardsInput
+  password: String
 }
 
 input LobbyUpdateManyMutationInput {
   name: String
   cards: LobbyUpdatecardsInput
+  password: String
 }
 
 input LobbyWhereInput {
@@ -130,6 +137,20 @@ input LobbyWhereInput {
   users_every: UserWhereInput
   users_some: UserWhereInput
   users_none: UserWhereInput
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
   AND: [LobbyWhereInput!]
   OR: [LobbyWhereInput!]
   NOT: [LobbyWhereInput!]

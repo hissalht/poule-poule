@@ -148,7 +148,13 @@ export type UserOrderByInput =
 
 export type CardType = "EGG" | "CHICKEN" | "FOX" | "DOG" | "DUCK";
 
-export type LobbyOrderByInput = "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC";
+export type LobbyOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "password_ASC"
+  | "password_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
@@ -261,6 +267,20 @@ export interface LobbyWhereInput {
   users_every?: Maybe<UserWhereInput>;
   users_some?: Maybe<UserWhereInput>;
   users_none?: Maybe<UserWhereInput>;
+  password?: Maybe<String>;
+  password_not?: Maybe<String>;
+  password_in?: Maybe<String[] | String>;
+  password_not_in?: Maybe<String[] | String>;
+  password_lt?: Maybe<String>;
+  password_lte?: Maybe<String>;
+  password_gt?: Maybe<String>;
+  password_gte?: Maybe<String>;
+  password_contains?: Maybe<String>;
+  password_not_contains?: Maybe<String>;
+  password_starts_with?: Maybe<String>;
+  password_not_starts_with?: Maybe<String>;
+  password_ends_with?: Maybe<String>;
+  password_not_ends_with?: Maybe<String>;
   AND?: Maybe<LobbyWhereInput[] | LobbyWhereInput>;
   OR?: Maybe<LobbyWhereInput[] | LobbyWhereInput>;
   NOT?: Maybe<LobbyWhereInput[] | LobbyWhereInput>;
@@ -286,6 +306,7 @@ export interface LobbyCreateInput {
   name: String;
   users?: Maybe<UserCreateManyInput>;
   cards?: Maybe<LobbyCreatecardsInput>;
+  password?: Maybe<String>;
 }
 
 export interface LobbyUpdatecardsInput {
@@ -339,6 +360,7 @@ export interface LobbyUpdateInput {
   name?: Maybe<String>;
   users?: Maybe<UserUpdateManyInput>;
   cards?: Maybe<LobbyUpdatecardsInput>;
+  password?: Maybe<String>;
 }
 
 export interface LobbyCreatecardsInput {
@@ -369,6 +391,7 @@ export type UserWhereUniqueInput = AtLeastOne<{
 export interface LobbyUpdateManyMutationInput {
   name?: Maybe<String>;
   cards?: Maybe<LobbyUpdatecardsInput>;
+  password?: Maybe<String>;
 }
 
 export interface UserUpdateManyMutationInput {
@@ -509,6 +532,7 @@ export interface Lobby {
   id: ID_Output;
   name: String;
   cards: CardType[];
+  password?: String;
 }
 
 export interface LobbyPromise extends Promise<Lobby>, Fragmentable {
@@ -524,6 +548,7 @@ export interface LobbyPromise extends Promise<Lobby>, Fragmentable {
     last?: Int;
   }) => T;
   cards: () => Promise<CardType[]>;
+  password: () => Promise<String>;
 }
 
 export interface LobbySubscription
@@ -541,6 +566,7 @@ export interface LobbySubscription
     last?: Int;
   }) => T;
   cards: () => Promise<AsyncIterator<CardType[]>>;
+  password: () => Promise<AsyncIterator<String>>;
 }
 
 export interface LobbyNullablePromise
@@ -558,6 +584,7 @@ export interface LobbyNullablePromise
     last?: Int;
   }) => T;
   cards: () => Promise<CardType[]>;
+  password: () => Promise<String>;
 }
 
 export interface LobbyConnection {
@@ -608,6 +635,7 @@ export interface LobbyPreviousValues {
   id: ID_Output;
   name: String;
   cards: CardType[];
+  password?: String;
 }
 
 export interface LobbyPreviousValuesPromise
@@ -616,6 +644,7 @@ export interface LobbyPreviousValuesPromise
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   cards: () => Promise<CardType[]>;
+  password: () => Promise<String>;
 }
 
 export interface LobbyPreviousValuesSubscription
@@ -624,6 +653,7 @@ export interface LobbyPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   cards: () => Promise<AsyncIterator<CardType[]>>;
+  password: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserConnection {
