@@ -49,9 +49,9 @@ export default new Vuex.Store({
     addRandomCard({ commit }) {
       commit('ADD_CARD', getRandomCard())
     },
-    signup({ commit }, { name }) {
+    signup({ commit }, { name, password }) {
       return axios
-        .post('/api/users', { name })
+        .post('/api/users', { name, password })
         .then(response => response.data)
         .then(data => {
           commit('SET_USER', data)

@@ -74,7 +74,7 @@ export default {
     ...mapActions(['signup']),
     handleSubmit() {
       this.isLoading = true
-      this.signup({ name: this.name })
+      this.signup({ name: this.name, password: this.password })
         .then(() => {
           this.$router.push({ name: 'game' })
         })
